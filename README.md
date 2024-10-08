@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Vcriate - Online Examination Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Vcriate is a React-based online examination platform that allows users to take exams in a secure, full-screen environment.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- User authentication
+- Multiple choice questions
+- Timed exams
+- Full-screen mode enforcement
+- Result calculation and display
+- Email notification of results
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Before you begin, ensure you have met the following requirements:
 
-### `npm test`
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/exam-vcriate.git
+   cd exxam-vcriate
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Create a `.env` file in the root directory and add the following:
+   ```bash
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-email-password
+   ```
+   Replace `your-email@gmail.com` and `your-email-password` with your actual Gmail credentials or app password.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Running the Application
 
-### `npm run eject`
+1. Start the backend server:
+   ```bash
+   npm run server
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. In a new terminal, start the React development server:
+   ```bash
+   npm start
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. On the home page, click on "View Available Exams" to see the list of exams.
+2. Select an exam to start.
+3. Enter your details and proceed to the exam.
+4. The exam will be conducted in full-screen mode. Exiting full-screen mode may result in exam termination.
+5. Answer all questions and submit the exam.
+6. View your results on the Results page and receive an email with your exam report.
 
-## Learn More
+## Development
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To run both the frontend and backend concurrently for development:
+   ```bash
+   npm run dev
+   ```
+---
