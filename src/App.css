@@ -1,0 +1,533 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Add these styles at the beginning of your App.css file */
+:root {
+  --primary-color: #6C63FF;
+  --secondary-color: #4CAF50;
+  --background-gradient: linear-gradient(135deg, #1e1e2f 0%, #2a2a3c 100%);
+  --text-color: #ffffff;
+  --light-text-color: #b3b3b3;
+  --card-background: rgba(255, 255, 255, 0.1);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--background-gradient);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Update existing styles */
+.content {
+  background-color: var(--card-background);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.stat-card, .exam-card, .result-item, .recent-exams {
+  background-color: var(--card-background);
+  backdrop-filter: blur(5px);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+button:hover {
+  background-color: #5753D9;
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+nav ul li:hover {
+  color: var(--primary-color);
+}
+
+.content {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+h1, h2, h3 {
+  color: var(--primary-color);
+  margin-bottom: 24px;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  margin: 10px 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #5753D9;
+  transform: translateY(-2px);
+}
+
+.exam-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.exam-card {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.exam-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rules ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rules li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #E8EAF6;
+  border-radius: 6px;
+}
+
+.results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.results li {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #E8EAF6;
+  border-radius: 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.content.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: var(--white);
+  overflow-y: auto;
+}
+
+.exam-window {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Adjust other styles as needed for the full-screen exam view */
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.result-item {
+  background-color: #f0f4f8;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.result-item:hover {
+  background-color: #e1e8ed;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-btn:hover {
+  color: #f44336;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding-top: 30px;
+}
+
+.popup-content h3 {
+  margin-top: 0;
+}
+
+.popup-content ul {
+  padding-left: 20px;
+}
+
+.popup-content button {
+  margin-top: 20px;
+}
+
+/* Add these styles to your existing App.css */
+
+.dashboard {
+  text-align: center;
+}
+
+.dashboard-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0;
+}
+
+.stat-card {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  width: 30%;
+}
+
+.stat-card h3 {
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.stat-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.recent-exams {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin: 40px 0;
+}
+
+.recent-exams h3 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.recent-exams ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recent-exams li {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.recent-exams li span:nth-child(2) {
+  text-align: left;
+}
+
+.recent-exams li span:last-child {
+  text-align: right;
+}
+
+.recent-exams li:last-child {
+  border-bottom: none;
+}
+
+.dashboard button {
+  margin-top: 20px;
+}
+
+/* Results styles */
+.results {
+  padding: 20px;
+}
+
+.results h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.no-results {
+  text-align: center;
+  color: var(--light-text-color);
+}
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.result-item {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.result-content {
+  margin-right: 20px;
+}
+
+.result-date {
+  font-size: 0.9em;
+  color: var(--light-text-color);
+  margin-bottom: 5px;
+}
+
+.result-status .completed {
+  color: var(--secondary-color);
+}
+
+.result-status .terminated {
+  color: #f44336;
+}
+
+.result-score {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--light-text-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: #f44336;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: var(--card-background);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--light-text-color);
+  cursor: pointer;
+}
+
+.result-details p {
+  margin-bottom: 10px;
+}
+
+.questions-list {
+  margin-top: 20px;
+}
+
+.question-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Rules styles */
+.rules {
+  padding: 20px;
+}
+
+.rules h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rule-item {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--card-background);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.rule-number {
+  background-color: var(--primary-color);
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.rule-item p {
+  margin: 0;
+}
+
+/* Add this to your existing App.css */
+.email-status-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+.email-status-popup.success {
+  background-color: #4CAF50;
+}
+
+.email-status-popup.error {
+  background-color: #f44336;
+}
