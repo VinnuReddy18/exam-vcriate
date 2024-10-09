@@ -10,17 +10,16 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
 
-// Create a transporter using SMTP
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: false, // Use TLS
+  secure: false, 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
   },
-  debug: console.log, // Enable debug logs
-  logger: true // Log to console
+  debug: console.log, 
+  logger: true 
 });
 
 app.post('/send-email', async (req, res) => {

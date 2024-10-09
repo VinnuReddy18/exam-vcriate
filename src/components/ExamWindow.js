@@ -1,9 +1,8 @@
-// src/components/ExamWindow.js
 import React, { useState, useEffect, useCallback } from 'react';
 import screenfull from 'screenfull';
 import { motion, AnimatePresence } from 'framer-motion';
 import Timer from './Timer';
-import './ExamWindow.css'; // We'll create this file for ExamWindow-specific styles
+import './ExamWindow.css'; 
 
 const examQuestions = {
   1: [
@@ -76,6 +75,9 @@ function ExamWindow({ onExamEnd, onReportGenerated, selectedExam }) {
   const [questions, setQuestions] = useState([]);
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [isTabSwitchWarningShown, setIsTabSwitchWarningShown] = useState(false);
+  const [isExamTerminated, setIsExamTerminated] = useState(false);
+  const [terminationReason, setTerminationReason] = useState('');
 
   useEffect(() => {
     setQuestions(examQuestions[selectedExam] || []);
@@ -155,7 +157,7 @@ function ExamWindow({ onExamEnd, onReportGenerated, selectedExam }) {
       userName,
       userEmail,
       userPhone,
-      examName,  // Make sure this line is included
+      examName,  
       startTime: examStartTime,
       endTime,
       duration: (endTime - examStartTime) / 1000,
@@ -189,6 +191,40 @@ function ExamWindow({ onExamEnd, onReportGenerated, selectedExam }) {
     }
   };
 
+  const handleVisibilityChange = useCallback(() => {
+    if (document.hidden && examStarted) {
+      terminateExam('Tab or window switched');
+    }
+  }, [examStarted]);
+
+  const terminateExam = (reason) => {
+    const endTime = new Date();
+    const report = {
+      userName,
+      userEmail,
+      userPhone,
+      examName: getExamName(selectedExam),
+      startTime: examStartTime,
+      endTime,
+      duration: (endTime - examStartTime) / 1000,
+      status: 'terminated',
+      reason: reason
+    };
+    onReportGenerated(report);
+    setIsExamTerminated(true);
+    setTerminationReason(reason);
+    // Don't call onExamEnd here, we'll call it after showing the popup
+  };
+
+  useEffect(() => {
+    if (examStarted) {
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
+    }
+  }, [examStarted, handleVisibilityChange]);
+
   const enterFullScreenAndStartExam = () => {
     if (screenfull.isEnabled) {
       screenfull.request().then(() => {
@@ -197,12 +233,10 @@ function ExamWindow({ onExamEnd, onReportGenerated, selectedExam }) {
         setExamStartTime(new Date());
       }).catch((error) => {
         console.error('Failed to enter full-screen mode:', error);
-        alert('Failed to enter full-screen mode. Please try again or contact support.');
+        alert('Failed to enter full-screen mode. The exam cannot proceed.');
       });
     } else {
-      alert('Full-screen mode is not supported on this device. You may continue, but the exam integrity cannot be guaranteed.');
-      setExamStarted(true);
-      setExamStartTime(new Date());
+      alert('Full-screen mode is not supported on this device. The exam cannot proceed.');
     }
   };
 
@@ -277,6 +311,7 @@ function ExamWindow({ onExamEnd, onReportGenerated, selectedExam }) {
             <li>Ensure you have a stable internet connection</li>
             <li>Close all unnecessary applications</li>
             <li>Find a quiet place to take the exam</li>
+            <li><strong>Warning:</strong> Switching tabs or windows will result in immediate exam termination</li>
           </ul>
           <motion.button 
             onClick={enterFullScreenAndStartExam} 
@@ -295,13 +330,24 @@ function ExamWindow({ onExamEnd, onReportGenerated, selectedExam }) {
     return (
       <div className="exam-window warning">
         <h2>Full Screen Violation</h2>
-        <p>Please return to full-screen mode to continue the exam.</p>
-        <p>You have {MAX_VIOLATIONS - violationCount} chance(s) left before the exam is terminated.</p>
+        <p>You have exited full-screen mode. The exam will be terminated if you do not return to full-screen immediately.</p>
         <button onClick={() => {
           screenfull.request();
           setIsFullScreenViolation(false);
         }}>
-          Enter Full Screen
+          Return to Full Screen
+        </button>
+      </div>
+    );
+  }
+
+  if (isExamTerminated) {
+    return (
+      <div className="exam-window termination-popup">
+        <h2>Exam Terminated</h2>
+        <p>Your exam has been terminated due to: {terminationReason}</p>
+        <button onClick={() => onExamEnd('terminated', { reason: terminationReason })}>
+          Close
         </button>
       </div>
     );

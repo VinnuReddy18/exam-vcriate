@@ -1,4 +1,3 @@
-// src/components/Timer.js
 import React, { useState, useEffect } from 'react';
 
 function Timer({ duration, onTimeUp }) {

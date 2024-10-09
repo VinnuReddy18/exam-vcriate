@@ -6,7 +6,7 @@ function Rules() {
     "Remain in full-screen mode throughout the exam.",
     "Do not use any external resources or devices.",
     "Answer all questions to the best of your ability.",
-    "You have 3 chances if you exit full-screen mode.",
+    "Switching tabs or windows will result in immediate exam termination.",
     "Submit your exam before the timer runs out.",
   ];
 

@@ -5,7 +5,7 @@ function Dashboard({ setCurrentView }) {
   const [analytics, setAnalytics] = useState({
     totalExams: 0,
     averageScore: 0,
-    upcomingExams: 3, // This could be fetched from a backend in a real application
+    upcomingExams: 3,
   });
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function Dashboard({ setCurrentView }) {
     setAnalytics({
       totalExams,
       averageScore,
-      upcomingExams: 3, // Static for now
+      upcomingExams: 3,
     });
   }, []);
 

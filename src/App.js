@@ -33,7 +33,7 @@ function App() {
   const handleReportGenerated = async (report) => {
     const result = await sendEmail(report);
     setEmailStatus(result);
-    setTimeout(() => setEmailStatus(null), 5000); // Hide the popup after 5 seconds
+    setTimeout(() => setEmailStatus(null), 5000); 
   };
 
   return (
